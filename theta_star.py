@@ -5,6 +5,7 @@ import math
 def heuristic(a, b):
     return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2)
 
+
 def line_of_sight(s1, s2, grid):
     dx = s2[0] - s1[0]
     dy = s2[1] - s1[1]
@@ -26,8 +27,10 @@ def line_of_sight(s1, s2, grid):
                 return False
     return True
 
+
 def distance(a, b):
     return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2)
+
 
 def theta_star_search(grid, start, end, x_size, y_size, z_size):
     open_set = []

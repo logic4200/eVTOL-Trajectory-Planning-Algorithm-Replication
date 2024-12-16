@@ -32,7 +32,7 @@ def a_star_search(grid, start, end, x_size, y_size, z_size):
         for dx, dy, dz in directions:
             neighbor = (current[0] + dx, current[1] + dy, current[2] + dz)
             if 0 <= neighbor[0] < x_size and 0 <= neighbor[1] < y_size and 0 <= neighbor[2] < z_size:
-                if grid[neighbor[0],neighbor[1],neighbor[2]]:
+                if grid[neighbor[0], neighbor[1], neighbor[2]]:
                     continue
                 else:
                     if neighbor not in g_score:

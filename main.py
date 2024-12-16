@@ -1,15 +1,14 @@
+import math
+import random
 import time
 
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
-import random
+
 import a_star
 import theta_star
-import math
 
-
-random.seed(2024)
+random.seed(42)
 # 定义栅格的尺寸
 x_size = 100
 y_size = 100
@@ -75,10 +74,11 @@ def calculate_path_length(path):
     for i in range(1, len(path)):
         x1, y1, z1 = path[i - 1]
         x2, y2, z2 = path[i]
-        distance = math.sqrt(((x2 - x1)*5) ** 2 + ((y2 - y1)*5) ** 2 + (z2 - z1) ** 2)
+        distance = math.sqrt(((x2 - x1) * 5) ** 2 + ((y2 - y1) * 5) ** 2 + (z2 - z1) ** 2)
         total_length += distance
 
     return total_length
+
 
 def line_of_sight(s1, s2, grid):
     dx = s2[0] - s1[0]
@@ -100,6 +100,8 @@ def line_of_sight(s1, s2, grid):
             if grid[ix][iy][iz]:
                 return False
     return True
+
+
 # 执行算法
 start_time = time.time()
 path1 = a_star.a_star_search(grid_3d_safe, start, end, x_size, y_size, z_size)
@@ -122,9 +124,9 @@ length1 = calculate_path_length(path1)
 length2 = calculate_path_length(path2)
 length3 = calculate_path_length(path3)
 
-print(f"Real length of path1: {length1}, cost time: {path1_end_time-start_time} s")
-print(f"Real length of path2: {length2}, cost time: {path2_end_time-start_time} s")
-print(f"Real length of path3: {length3}, cost time: {path3_end_time-path2_end_time} s")
+print(f"Real length of path1: {length1}, cost time: {path1_end_time - start_time} s")
+print(f"Real length of path2: {length2}, cost time: {path2_end_time - start_time} s")
+print(f"Real length of path3: {length3}, cost time: {path3_end_time - path2_end_time} s")
 
 # 绘制3D图形
 fig = plt.figure(figsize=(12, 7))
